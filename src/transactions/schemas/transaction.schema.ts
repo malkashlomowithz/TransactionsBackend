@@ -17,10 +17,7 @@ export class Transaction {
   transactionId: string;
 
   @Prop({ required: true })
-  firstName: string;
-
-  @Prop({ required: true })
-  lastName: string;
+  description: string;
 
   @Prop({ required: true })
   amount: number;

@@ -6,11 +6,7 @@ import type { TransferType } from '../schemas/transaction.schema';
 export class UpdateTransactionDto {
   @IsOptional()
   @IsString()
-  firstName?: string;
-
-  @IsOptional()
-  @IsString()
-  lastName?: string;
+  description?: string;
 
   @IsOptional()
   @Type(() => Number)
