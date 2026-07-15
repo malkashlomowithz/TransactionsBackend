@@ -21,7 +21,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "seed:transactions": "ts-node -r tsconfig-paths/register scripts/seed-transactions.ts"
+    "seed:transactions": "ts-node -r tsconfig-paths/register scripts/seed-transactions.ts",
+    "update:transaction-amounts": "ts-node -r tsconfig-paths/register scripts/update-transaction-amounts.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

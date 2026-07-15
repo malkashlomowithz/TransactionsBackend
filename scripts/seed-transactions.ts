@@ -40,6 +40,13 @@ const DESCRIPTIONS = [
   'Refund',
 ];
 
+function signedAmount(magnitude: number, transferType: string): number {
+  if (transferType === 'deposit') return magnitude;
+  if (transferType === 'withdrawal' || transferType === 'payment')
+    return -magnitude;
+  return Math.random() < 0.5 ? magnitude : -magnitude; // transfer
+}
+
 async function seed() {
   const uri = process.env.MONGODB_URI;
   if (!uri) throw new Error('MONGODB_URI is not set in .env');
@@ -54,13 +61,21 @@ async function seed() {
 
   for (let i = 0; i < TOTAL; i += BATCH_SIZE) {
     const batchSize = Math.min(BATCH_SIZE, TOTAL - i);
-    const batch = Array.from({ length: batchSize }, () => ({
-      transactionId: faker.string.uuid(),
-      description: faker.helpers.arrayElement(DESCRIPTIONS),
-      amount: faker.number.float({ min: 1, max: 5000, fractionDigits: 2 }),
-      transferType: faker.helpers.arrayElement(TRANSFER_TYPES),
-      cardLastFour: faker.string.numeric(4),
-    }));
+    const batch = Array.from({ length: batchSize }, () => {
+      const transferType = faker.helpers.arrayElement(TRANSFER_TYPES);
+      const magnitude = faker.number.float({
+        min: 1,
+        max: 5000,
+        fractionDigits: 2,
+      });
+      return {
+        transactionId: faker.string.uuid(),
+        description: faker.helpers.arrayElement(DESCRIPTIONS),
+        amount: signedAmount(magnitude, transferType),
+        transferType,
+        cardLastFour: faker.string.numeric(4),
+      };
+    });
 
     await TransactionModel.insertMany(batch);
     console.log(`Inserted ${i + batch.length}/${TOTAL}`);
