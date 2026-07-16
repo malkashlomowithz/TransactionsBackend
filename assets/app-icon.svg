@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1024" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2E6BFF"/>
+      <stop offset="1" stop-color="#0FCBC6"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2E6BFF"/>
+      <stop offset="1" stop-color="#0FCBC6"/>
+    </linearGradient>
+    <linearGradient id="chipGrad" x1="0" y1="0" x2="120" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD76A"/>
+      <stop offset="1" stop-color="#F4A93E"/>
+    </linearGradient>
+    <radialGradient id="sheen" cx="30%" cy="20%" r="80%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0A2A6B" flood-opacity="0.35"/>
+    </filter>
+    <filter id="badgeShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#08245c" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- background squircle -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#bg)"/>
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#sheen)"/>
+
+  <!-- card -->
+  <g filter="url(#softShadow)" transform="rotate(-8 512 512)">
+    <rect x="242" y="352" width="540" height="336" rx="44" fill="#FFFFFF"/>
+    <!-- chip -->
+    <rect x="298" y="416" width="92" height="70" rx="14" fill="url(#chipGrad)"/>
+    <!-- text lines -->
+    <rect x="298" y="522" width="230" height="22" rx="11" fill="#D7DEEA"/>
+    <rect x="298" y="566" width="150" height="22" rx="11" fill="#E7ECF4"/>
+    <rect x="596" y="416" width="120" height="22" rx="11" fill="#E7ECF4"/>
+  </g>
+
+  <!-- exchange badge -->
+  <g filter="url(#badgeShadow)">
+    <circle cx="700" cy="700" r="150" fill="#FFFFFF"/>
+    <circle cx="700" cy="700" r="150" fill="url(#sheen)"/>
+    <g fill="none" stroke="url(#badgeGrad)" stroke-width="22" stroke-linecap="round">
+      <path d="M636 656 H760 a40 40 0 0 1 40 40 v18"/>
+      <path d="M764 744 H640 a40 40 0 0 1 -40 -40 v-18"/>
+    </g>
+    <g fill="url(#badgeGrad)">
+      <path d="M636 618 l0 76 -50 -38 z"/>
+      <path d="M764 782 l0 -76 50 38 z"/>
+    </g>
+  </g>
+</svg>
